@@ -1,15 +1,25 @@
 .btn-custom-color {
-    background-color: #17611a; /* Green */
+    background-color: #3B1E54; /* Green */
     border: none;
     color: white;
 }
 :root{
-    --bs-body-bg:#8274fa;
+    --bs-body-bg:#3B1E54;;
+
 }
 .card{
-    background-color: #2eaf32;
-    color:white;
+    background-color: #9B7EBD;
+    color:rgb(0, 0, 0);
 }
 .navbar-custom{
     background-color: #40aa44;
 }
+.dropdown-menu{
+    background-color: #9B7EBD;
+}
+form{
+    background-color: #9B7EBD;
+    color: black;
+    padding: 20px;
+    border-radius: 10px;
+text-align: center;}
