@@ -1,0 +1,15 @@
+.btn-custom-color {
+    background-color: #17611a; /* Green */
+    border: none;
+    color: white;
+}
+:root{
+    --bs-body-bg:#8274fa;
+}
+.card{
+    background-color: #2eaf32;
+    color:white;
+}
+.navbar-custom{
+    background-color: #40aa44;
+}
