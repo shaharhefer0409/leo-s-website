@@ -90,14 +90,14 @@
   </div>
 </div>
     </div>
-    <div class="d-flex flex-column align-items-center justify-content-center mb-5 contact-form">
+
 
 
     
 
 
 
-
+    
     <div class="d-flex flex-column align-items-center justify-content-center mb-5 contact-form">
         <div class="container" style="max-width: 800px;">
             <h2 class="text-center mb-4 text-white">Art Commission Request</h2>
@@ -160,8 +160,7 @@
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
-        // Initialize EmailJS with your public key
-        emailjs.init('he1bbPPRksyyWv6od'); // Get from emailjs.com after signup
+        emailjs.init('he1bbPPRksyyWv6od');
         
         document.getElementById('commissionForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -177,27 +176,43 @@
             submitBtn.disabled = true;
             submitBtn.textContent = 'Sending...';
             
-            // Send email using EmailJS
-            emailjs.sendForm('service_exbff3o', 'template_dxdl5o1', 'template_kwtqxb8', this)
-                .then(function(response) {
+            const formData = new FormData(this);
+            const params = Object.fromEntries(formData);
+            params.submission_date = new Date().toLocaleString();
+            
+            // Send to customer (template_dxdl5o1)
+            emailjs.send('service_exbff3o', 'template_dxdl5o1', params)
+                .then(function() {
+                    // Send to Leo (template_kwtqxb8)
+                    return emailjs.send('service_exbff3o', 'template_kwtqxb8', params);
+                })
+                .then(function() {
                     formMessage.textContent = 'Thank you! Your commission request has been submitted successfully.';
                     formMessage.className = 'alert alert-success';
                     formMessage.classList.remove('d-none');
                     document.getElementById('commissionForm').reset();
                     document.getElementById('commissionForm').classList.remove('was-validated');
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Submit Request';
-                }, function(error) {
+                })
+                .catch(function(error) {
+                    console.error('EmailJS Error:', error);
                     formMessage.textContent = 'Oops! Something went wrong. Please try again.';
                     formMessage.className = 'alert alert-danger';
                     formMessage.classList.remove('d-none');
+                })
+                .finally(function() {
                     submitBtn.disabled = false;
                     submitBtn.textContent = 'Submit Request';
                 });
         });
     </script>
-// ...existing code...
-</div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"></script>
+
+  </body>
+</html>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
