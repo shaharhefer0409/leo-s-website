@@ -12,8 +12,7 @@
     --text-secondary: #CBD5E1;      /* Muted text */
     
     /* Gradient */
-    --gradient-main: linear-gradient(135deg, #8B5CF6 0%, #14B8A6 100%);
-    --gradient-accent: linear-gradient(135deg, #FB7185 0%, #F59E0B 100%);
+    --gradient-main: #8B5CF6;
 }
 
 /* Background */
@@ -35,7 +34,7 @@ body {
     transition: all 0.3s ease;
 }
 
-.navbar-custom .nav-link:hover,
+.navbar-custom,
 .navbar-custom .nav-link.active {
     color: var(--primary-teal) !important;
     transform: translateY(-2px);
@@ -55,16 +54,11 @@ body {
     padding: 12px 30px;
     font-weight: 600;
     border-radius: 25px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+
+
 }
 
-.btn-custom-color:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
-    background: var(--gradient-accent);
-    color: white;
-}
+
 
 /* Cards */
 .card {
@@ -75,11 +69,7 @@ body {
     overflow: hidden;
 }
 
-.card:hover {
-    transform: translateY(-10px);
-    border-color: var(--primary-teal);
-    box-shadow: 0 10px 30px rgba(20, 184, 166, 0.3);
-}
+
 
 .card-title {
     color: var(--primary-purple);
@@ -90,9 +80,7 @@ body {
     color: var(--text-secondary);
 }
 
-.card-body {
-    background: linear-gradient(to bottom, var(--card-bg), rgba(30, 41, 59, 0.8));
-}
+
 
 /* Hero Section */
  h1 {
@@ -175,10 +163,7 @@ body {
     transition: all 0.3s ease;
 }
 
-.dropdown-item:hover {
-    background: var(--gradient-main);
-    color: white;
-}
+
 
 /* Navbar Toggler */
 .navbar-toggler {
@@ -194,14 +179,3 @@ body {
     position: relative;
 }
 
-.card-container::before {
-    content: '';
-    position: absolute;
-    top: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 4px;
-    background: var(--gradient-main);
-    border-radius: 2px;
-}
