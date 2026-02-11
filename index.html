@@ -160,7 +160,7 @@
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
-        emailjs.init('he1bbPPRksyyWv6od');
+        emailjs.init('YgWVmWLEhj-HfbMbD');
         
         document.getElementById('commissionForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -180,11 +180,11 @@
             const params = Object.fromEntries(formData);
             params.submission_date = new Date().toLocaleString();
             
-            // Send to customer (template_dxdl5o1)
-            emailjs.send('service_exbff3o', 'template_dxdl5o1', params)
+
+            emailjs.send('service_sjbzejh', 'template_vr4ap2c', params)
                 .then(function() {
-                    // Send to Leo (template_kwtqxb8)
-                    return emailjs.send('service_exbff3o', 'template_kwtqxb8', params);
+
+                    return emailjs.send('service_sjbzejh', 'template_yk945rg', params);
                 })
                 .then(function() {
                     formMessage.textContent = 'Thank you! Your commission request has been submitted successfully.';
