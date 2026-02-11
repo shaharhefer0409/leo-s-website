@@ -92,26 +92,111 @@
     </div>
     <div class="d-flex flex-column align-items-center justify-content-center mb-5 contact-form">
 
-    <iframe
-      id="JotFormIFrame-260355300003034"
-      title="Art comission"
-      onload="window.parent.scrollTo(0,0)"
-      allowtransparency="true"
-      allow="geolocation; microphone; camera; fullscreen; payment"
-      src="https://form.jotform.com/260355300003034"
-      frameborder="0"
-      style="min-width:100%;max-width:100%;height:1000px;border:none;"
-      scrolling="no"
-    >
-    </iframe>
-    <script src='https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js'></script>
-    <script>window.jotformEmbedHandler("iframe[id='JotFormIFrame-260355300003034']", "https://form.jotform.com/")</script>
+
     
 
 
 
 
-</form>
+    <div class="d-flex flex-column align-items-center justify-content-center mb-5 contact-form">
+        <div class="container" style="max-width: 800px;">
+            <h2 class="text-center mb-4 text-white">Art Commission Request</h2>
+            <form id="commissionForm" class="needs-validation" novalidate>
+                <div class="mb-3">
+                    <label for="name" class="form-label text-white">Full Name *</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="email" class="form-label text-white">Email *</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="phone" class="form-label text-white">Phone Number</label>
+                    <input type="tel" class="form-control" id="phone" name="phone">
+                </div>
+                
+                <div class="mb-3">
+                    <label for="artType" class="form-label text-white">Art Type *</label>
+                    <select class="form-select" id="artType" name="artType" required>
+                        <option value="">Select...</option>
+                        <option value="Fabric Art">Fabric Art</option>
+                        <option value="Jewelry">Jewelry</option>
+                        <option value="Painting">Painting</option>
+                        <option value="Writing">Writing</option>
+                    </select>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="budget" class="form-label text-white">Budget Range</label>
+                    <select class="form-select" id="budget" name="budget">
+                        <option value="">Select...</option>
+                        <option value="Under $50">Under $50</option>
+                        <option value="$50-$100">$50-$100</option>
+                        <option value="$100-$250">$100-$250</option>
+                        <option value="$250+">$250+</option>
+                    </select>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="description" class="form-label text-white">Project Description *</label>
+                    <textarea class="form-control" id="description" name="description" rows="5" required></textarea>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="deadline" class="form-label text-white">Desired Completion Date</label>
+                    <input type="date" class="form-control" id="deadline" name="deadline">
+                </div>
+                
+                <div id="formMessage" class="alert d-none" role="alert"></div>
+                
+                <button type="submit" class="btn btn-custom-color w-100" id="submitBtn">
+                    Submit Request
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        // Initialize EmailJS with your public key
+        emailjs.init('he1bbPPRksyyWv6od'); // Get from emailjs.com after signup
+        
+        document.getElementById('commissionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!this.checkValidity()) {
+                this.classList.add('was-validated');
+                return;
+            }
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const formMessage = document.getElementById('formMessage');
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            
+            // Send email using EmailJS
+            emailjs.sendForm('service_exbff3o', 'template_dxdl5o1', 'template_kwtqxb8', this)
+                .then(function(response) {
+                    formMessage.textContent = 'Thank you! Your commission request has been submitted successfully.';
+                    formMessage.className = 'alert alert-success';
+                    formMessage.classList.remove('d-none');
+                    document.getElementById('commissionForm').reset();
+                    document.getElementById('commissionForm').classList.remove('was-validated');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit Request';
+                }, function(error) {
+                    formMessage.textContent = 'Oops! Something went wrong. Please try again.';
+                    formMessage.className = 'alert alert-danger';
+                    formMessage.classList.remove('d-none');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit Request';
+                });
+        });
+    </script>
+// ...existing code...
 </div>
 
     <script
